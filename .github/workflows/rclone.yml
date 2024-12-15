@@ -1,0 +1,27 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Rclone sync
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  schedule: 
+    - cron: '0 12 * * 1'
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  rclone_sync:
+    runs-on: ubuntu-latest
+  # This workflow contains a single job called "build"
+ 
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    - name: Setup Rclone
+      uses: AnimMouse/setup-rclone@v1
+      with:
+        rclone_config: ${{ secrets.RCLONE_CONFIG }}
+      
+    - run: 'rclone sync main_viethoangprobie: backup_sinhvien:'
